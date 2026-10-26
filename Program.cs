@@ -23,7 +23,7 @@ class Program
 
         while (true)
         {
-            Console.Write("\n===== TASK TRACKER =====\n1. View Tasks\n2. Add Task\n3. Complete Task\n4. Exit\n\nEnter your choice: ");
+            Console.Write("\n===== TASK TRACKER =====\n1. View Tasks\n2. Add Task\n3. Complete Task\n4. Exit\n5. About\n\nEnter your choice: \n");
             string? choice = Console.ReadLine();
 
             switch (choice)
@@ -42,6 +42,11 @@ class Program
 
                 case "4":
                     return;
+
+                case "5":
+                    Console.WriteLine("Task Tracker v1.0\r\nCreated as part of my C# developer training.");
+                    break;
+
                 default:
                     Console.WriteLine("\nInvalid input, please enter 1, 2, or 3.");
                     break;
