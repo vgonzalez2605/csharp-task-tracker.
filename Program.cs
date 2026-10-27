@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 class Program
@@ -6,16 +7,9 @@ class Program
     static void Main(string[] args)
     {
         List<TaskItem> tasks = new List<TaskItem>();
-        TaskItem task = new TaskItem();
-        TaskItem task2 = new TaskItem();
-        
-
-        task.Title = "Learn C#";
-        task.IsCompleted = true;
-
-        task2.Title = "Practice Git";
-        task2.IsCompleted = false;
-        
+        TaskItem task = new TaskItem("Learn C#");
+        TaskItem task2 = new TaskItem("Practice Git");
+                
 
         tasks.Add(task);
         tasks.Add(task2);
@@ -23,7 +17,7 @@ class Program
 
         while (true)
         {
-            Console.Write("\n===== TASK TRACKER =====\n1. View Tasks\n2. Add Task\n3. Complete Task\n4. Exit\n5. About\n\nEnter your choice: \n");
+            Console.Write("\n===== TASK TRACKER =====\n1. View Tasks\n2. Add Task\n3. Complete Task\n4. Exit\n5. About\n\nEnter your choice: ");
             string? choice = Console.ReadLine();
 
             switch (choice)
@@ -102,7 +96,7 @@ class Program
             return;
         }
 
-        tasks[taskNumber - 1].IsCompleted = true;
+        tasks[taskNumber - 1].MarkComplete();
         Console.WriteLine("Task is completed successfully!");
 
     }
@@ -112,9 +106,19 @@ class Program
 
 class TaskItem
 {
+    public string Title;
+    public TaskItem(string title) {
+        Title = title; 
+    }
 
-    public string Title { get; set; }
 
-    public bool IsCompleted { get; set; }
+    
+
+    public bool IsCompleted { get; private set; }
+
+    public void MarkComplete()
+    {
+        IsCompleted = true;
+    }
 
 }
